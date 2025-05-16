@@ -1,0 +1,213 @@
+:root {
+  --primary-color: #ff6f61;
+  --dark-color: #333;
+  --light-color: #f9f9f9;
+  --transition: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--dark-color);
+  background: var(--light-color);
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.site-header {
+  background: #2e2828;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 60px;
+  margin-right: 0.5rem;
+}
+
+.logo span {
+  color: var(--light-color);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: var(--light-color);
+  transition: color var(--transition);
+}
+
+.nav-list a:hover {
+  color: var(--primary-color);
+}
+
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-toggle .hamburger,
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: var(--light-color);
+  border-radius: 3px;
+  position: relative;
+  transition: all var(--transition);
+}
+
+.nav-toggle .hamburger::before { content: ''; position: absolute; top: -8px; }
+.nav-toggle .hamburger::after  { content: ''; position: absolute; top:  8px; }
+
+@media (max-width: 700px) {
+  .nav-toggle { display: block; }
+  .nav-list {
+    position: absolute;
+    top: 100%; right: 0;
+    background: #e00909;
+    flex-direction: column;
+    width: 200px;
+    transform: translateY(-200%);
+    transition: transform var(--transition);
+  }
+  .nav-list.open { transform: translateY(0); }
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  height: 90vh;
+  background: url('https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg') center/cover no-repeat;
+  display: flex; align-items: center;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+.hero-content {
+  position: relative; color: #fff;
+  max-width: 600px; animation: fadeInUp 1s ease-out;
+}
+
+/* Buttons */
+.btn, .btn-primary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: background var(--transition);
+}
+.btn-primary {
+  background: var(--primary-color);
+  color: #fff;
+}
+.btn-primary:hover { background: #e65b50; }
+.btn {
+  background: var(--dark-color);
+  color: #fff;
+}
+.btn:hover { background: var(--primary-color); }
+
+/* Services */
+.services  { padding: 4rem 0; text-align: center; }
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 2rem; margin-top: 2rem;
+}
+.card {
+  background: #fff; border-radius: 1rem;
+  overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+.card.reveal {
+  opacity: 1; transform: translateY(0);
+}
+.card img {
+  width: 100%; display: block;
+  transition: transform var(--transition);
+}
+.card:hover img { transform: scale(1.05); }
+.card h3 { margin: 1rem; }
+.card p  { margin: 0 1rem 1rem; }
+
+/* About */
+.about {
+  display: flex; align-items: center;
+  gap: 2rem; padding: 4rem 0;
+}
+.about-content { flex: 1; }
+.about img {
+  flex: 1; height: 300px; object-fit: cover;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Contact */
+.contact { padding: 4rem 0; }
+.contact-form {
+  display: grid; gap: 1rem; max-width: 500px; margin: 0 auto;
+}
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem; border: 1px solid #ccc; border-radius: 0.5rem;
+}
+.contact-form button {
+  padding: 0.75rem; border: none; border-radius: 0.5rem;
+  background: var(--dark-color); color: #fff; cursor: pointer;
+  transition: background var(--transition);
+}
+.contact-form button:hover { background: var(--primary-color); }
+
+/* Footer */
+.site-footer {
+  text-align: center; padding: 2rem 0;
+  background: #222; color: #fff;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
